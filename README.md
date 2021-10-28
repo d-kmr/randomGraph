@@ -1,4 +1,4 @@
-# graphIO: create random graph and convert the created graph to a dot format file
+# randomGraph: create a random graph and convert the created graph to a dot format file
 
 [Requirements]
 - OCaml
