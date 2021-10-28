@@ -17,7 +17,7 @@ $ make
 
 [Usage]
 
-$ ./graph.sh
+$ ./randomGraph.sh
 
 
 [Usage of gengraph]
