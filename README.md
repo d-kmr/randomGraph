@@ -55,7 +55,7 @@ directed
 (2,4,3,2) 
 
 
-A directed graph with edges
+This means a directed graph with edges: 
 
 0 -[10,3]-> 1
 
@@ -76,7 +76,7 @@ undirected
 (2,4,3,2)
 
 
-An undirected graph with edges
+This means an undirected graph with edges: 
 
 0 -[10,3]- 1
 
