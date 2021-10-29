@@ -76,7 +76,6 @@ let generate_undirectedgraph () : graph =
   g
 ;;
 
-
 let print_matrix (g: graph) =
   for i = 0 to !size-1 do
     for j = 0 to !size-1 do
@@ -88,26 +87,47 @@ let print_matrix (g: graph) =
   done
 ;;  
 
-let print_text (g:graph) =
+let to_string_undirected (g:graph): string =
+  let str = ref "undirected\n" in  
+  for i = 0 to !size-1 do
+    for j = i to !size-1 do
+      if g.(i).(j) = [] then ()
+      else
+        str := !str ^ "(" ^ (string_of_int i) ^ "," ^ (string_of_int j) ^ "," ^ (string_of_list "," string_of_int g.(i).(j)) ^ ")\n";
+    done;
+  done;
+  !str
+;;  
+
+let to_string_directed (g:graph): string =
+  let str = ref "directed\n" in
   for i = 0 to !size-1 do
     for j = 0 to !size-1 do
       if g.(i).(j) = [] then ()
       else
-        Printf.printf "(%d,%d,%s)\n" i j (string_of_list "," string_of_int g.(i).(j));
+        str := !str ^ "(" ^ (string_of_int i) ^ "," ^ (string_of_int j) ^ "," ^ (string_of_list "," string_of_int g.(i).(j)) ^ ")\n";
     done;
-  done
+  done;
+  !str
 ;;  
+
 
 let () =
   Random.self_init ();
   Arg.parse speclist getsize msgUsage;
   if !size = 0 then usage_and_exit () else ();
-
-  let graph =
+    
+  let (graph,output) =
     match !undirected with
-    | true  -> generate_undirectedgraph ()
-    | false -> generate_directedgraph ()
+    | true  ->
+       let grp = generate_undirectedgraph () in
+       let str = to_string_undirected grp in
+       (grp,str)
+    | false ->
+       let grp = generate_directedgraph () in
+       let str = to_string_directed grp in
+       (grp,str)
   in
-  print_matrix graph;
-  print_text graph
+  (* print_matrix graph; *)
+  print_endline output
 ;;

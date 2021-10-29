@@ -2,5 +2,5 @@
 
 FILE="mygraph"
 
-gengraph -u -w 2 3 > mygraph.grp
+gengraph -w 1 5 > mygraph.grp
 grp2dot mygraph.grp > mygraph.dot
